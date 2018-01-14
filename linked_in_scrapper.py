@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 import json
-from lxml import html
+from extractor import Extractor
+
 
 class Linked_in_scraper:
 
@@ -37,48 +38,13 @@ class Linked_in_scraper:
 
 
 #  extract info from profile
-        user_profile = {}
-        name = soup_profile.find_all('code')
-        m=name[26].text
-        p=json.loads(str(m))
-        # n = json.dumps(m)
-        # p  = json.loads(n)
-        # print (m)
-        intro  = p['included'][-1]
-        included = p['included']
-        print (intro)
-        print (included[0])
 
-        firstName = intro['firstName']
-        lastName = intro['lastName']
-        occupation = intro['occupation']
+        div = soup_profile.find_all('code')
+        data=div[26].text
+        jsonData=json.loads(str(data))
 
-        skills=[]
-        experience=[]
-
-        for index,i in enumerate(included):
-            if 'name' in i.keys():
-                print(i)
-                print(index)
-                if(len(i) == 9):
-                    print(i['name'] + 'company')
-                    experience.append(i['name'])
-                if(len(i) == 4):
-                    skills.append(i['name'])
-
-        skillsList = ''
-        for i in skills:
-            skillsList += (i+', ');
-
-        experienceList = ''
-        for i in experience:
-            experienceList += (i + ', ');
-
-        print('\n'+'Name:       '+firstName+' '+lastName+'\n'
-              'Occupation: '+occupation+'\n'
-              'Skills:     ' + skillsList[:-2]+'\n'
-              'Experience: '+ experienceList[:-2])
-
+        extract = Extractor()
+        extract.extract_info(jsonData)
 
 
 
