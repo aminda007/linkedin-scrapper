@@ -41,12 +41,18 @@ class Extractor:
                     # print(i['name'] + 'company**************************')
                     experience.append(i['name'])
                 if (len(i) == 4):
-                    skills.append(i['name'])
+                    if (i['$type'] == 'com.linkedin.voyager.identity.profile.Skill' ):
+                        print(i)
+                        skills.append(i['name'])
                 if (len(i) == 6):
                     courses.append(i['name'])
                 if (len(i) == 8):
+                    # print(i)
                     organization_name.append(i['name'])
-                    organization_discription.append(i['description'])
+                    if 'description' in keys:
+                        organization_discription.append(i['description'])
+                    else:
+                        organization_discription.append('')
             elif 'members' in keys:
                 # print(i)
                 project_name.append(i['title'])
@@ -75,11 +81,11 @@ class Extractor:
 
         projectList = '\n'
         for i in range(len(project_name)):
-            projectList += '   ' +colorama.Fore.GREEN+ (project_name[i] + ' :- \n' + '        ' +colorama.Fore.WHITE+ project_discription[i] + '\n'+ project_url[i] + '\n'+'\n');
+            projectList += '   ' +colorama.Fore.LIGHTGREEN_EX+ (project_name[i] + ' :- \n' + '        ' +colorama.Fore.WHITE+ project_discription[i] + '\n'+ project_url[i] + '\n'+'\n');
 
         print('\n' + 'Name:       ' + firstName + ' ' + lastName + '\n---------------------------------------------------------------------------\n'
                 'Occupation: ' + occupation + '\n---------------------------------------------------------------------------\n'
-                'Summary: ' + summary + '\n---------------------------------------------------------------------------\n'
+                'Summary:    ' + summary + '\n---------------------------------------------------------------------------\n'
                 'Skills:     ' + skillsList[:-2] + '\n---------------------------------------------------------------------------\n'
                 'Experience: ' + experienceList[:-2]+ '\n---------------------------------------------------------------------------\n'
                 'Courses: ' + courseList[:-2]+ '\n---------------------------------------------------------------------------\n'

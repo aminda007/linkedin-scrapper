@@ -11,7 +11,7 @@ def get_linkedin_profile(link):
 
 
 # get_linkedin_profile('https://www.linkedin.com/in/manura-jithmal-de-silva-988b385b/')
-# get_linkedin_profile('https://www.linkedin.com/in/aminda-abeywardana-6aa8b845/')
+get_linkedin_profile('https://www.linkedin.com/in/aminda-abeywardana-6aa8b845/')
 # get_linkedin_profile('https://www.linkedin.com/in/chamodsamarajeewa/')
-get_linkedin_profile('https://www.linkedin.com/in/ksuthagar/')
+# get_linkedin_profile('https://www.linkedin.com/in/ksuthagar/')
 # get_linkedin_profile('https://www.linkedin.com/in/anuradha-sithuruwan-a971b7126/')
